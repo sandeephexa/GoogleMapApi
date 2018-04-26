@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Google Map</title>
+    <style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+<h1>My Google Map</h1>
+<div id="map"></div>
+
+<script>
+    function initMap(){
+        //map option
+        var options = {
+            zoom : 8,
+            center : {lat:13.0827, lng : 80.2707}
+        }
+        // new map
+        var map = new google.maps.Map(document.getElementById('map'),options);
+        // map marker
+        var marker = new google.maps.Marker({
+            position : {lat:12.8259,lng:80.21607 },
+            map : map,
+            icon : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+        })
+        // info window
+        var infoWindow = new google.maps.InfoWindow({
+            content : `<h3>Siruseri</h3>`
+        });
+        // add listener
+        marker.addListener('click',function(){
+            infoWindow.open(map,marker)
+        });
+        // adding marker
+        addMarker({coords :{lat:12.8259,lng: 80.21607 },
+        iconImage : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'});
+          addMarker({coords :{lat:13.0012,lng: 80.2565 }});
+        function addMarker(props){
+            
+    var marker = new google.maps.Marker({
+            position : props.coords,
+            map : map,
+            icon : props.iconImage
+        })
+        }
+    
+    }
+   
+
+</script>
+
+
+      </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMczeTHzEZoD8ro6Sja2Vxjtb6hBxekCU&callback=initMap"
+    async defer></script>
+</body>
+</html>
